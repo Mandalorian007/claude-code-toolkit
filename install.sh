@@ -2,12 +2,12 @@
 
 # Claude Code Toolkit Installer
 # Safely installs Claude hooks, agents, and MCP configuration to any directory
-# Usage: curl https://raw.githubusercontent.com/yourname/claude-toolkit/main/install.sh | bash
+# Usage: curl https://raw.githubusercontent.com/Mandalorian007/claude-code-toolkit/main/install.sh | bash
 
 set -e
 
 # Configuration
-REPO_URL="https://github.com/yourname/claude-toolkit"
+REPO_URL="https://github.com/Mandalorian007/claude-code-toolkit"
 TEMP_DIR=$(mktemp -d)
 CURRENT_DIR=$(pwd)
 BACKUP_DIR=".claude-toolkit-backup-$(date +%s)"

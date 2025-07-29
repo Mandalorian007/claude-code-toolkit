@@ -6,7 +6,7 @@ Professional Claude Code setup with voice feedback, security protection, and MCP
 
 **One-line installation:**
 ```bash
-curl https://raw.githubusercontent.com/yourname/claude-toolkit/main/install.sh | bash
+curl https://raw.githubusercontent.com/Mandalorian007/claude-code-toolkit/main/install.sh | bash
 ```
 
 **What this does:**
