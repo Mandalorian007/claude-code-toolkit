@@ -306,10 +306,6 @@ install_files() {
     cp "$TEMP_DIR/.mcp.json" .
     log_success ".mcp.json installed"
     
-    # Handle README (rename to avoid conflicts)
-    log_install "Installing documentation..."
-    cp "$TEMP_DIR/README.md" "./README-claude-toolkit.md"
-    log_success "Documentation installed as README-claude-toolkit.md"
     
     # Setup environment variables
     setup_env_file
@@ -392,7 +388,7 @@ main() {
         echo "  3. Launch Claude Code: export \$(cat .env | xargs) && claude"
         echo "  4. Try the @prime command to load project context"
         echo ""
-        echo "📚 Documentation: README-claude-toolkit.md"
+        echo "📚 Documentation: https://github.com/Mandalorian007/claude-code-toolkit"
         
         if [[ "$NEEDS_BACKUP" == true ]]; then
             echo ""
