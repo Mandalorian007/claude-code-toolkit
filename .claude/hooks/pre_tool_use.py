@@ -104,28 +104,6 @@ def main():
                 print("BLOCKED: Dangerous rm command detected and prevented", file=sys.stderr)
                 sys.exit(2)  # Exit code 2 blocks tool call and shows error to Claude
         
-        # Ensure log directory exists
-        log_dir = Path.cwd() / 'claude-toolkit-logs'
-        log_dir.mkdir(exist_ok=True)
-        log_file = log_dir / 'pre_tool_use.json'
-        
-        # Read existing log data or initialize empty list
-        if log_file.exists():
-            with open(log_file, 'r') as f:
-                try:
-                    log_data = json.load(f)
-                except (json.JSONDecodeError, ValueError):
-                    log_data = []
-        else:
-            log_data = []
-        
-        # Append new data
-        log_data.append(input_data)
-        
-        # Write back to file with formatting
-        with open(log_file, 'w') as f:
-            json.dump(log_data, f, indent=2)
-        
         sys.exit(0)
         
     except json.JSONDecodeError:

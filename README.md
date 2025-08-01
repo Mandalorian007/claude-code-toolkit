@@ -34,7 +34,6 @@ The installer will check for these and guide you if missing:
 
 - **🎙️ Voice Notifications** - ElevenLabs TTS for agent feedback
 - **🛡️ Security Protection** - Blocks dangerous commands (`rm -rf`, etc.)
-- **📊 Complete Logging** - All interactions logged to `claude-toolkit-logs/`
 - **🤖 Sub-Agents** - Meta-agent creates specialized task agents
 - **🔗 MCP Integration** - Perplexity, Firecrawl, YouTube, Reddit, Playwright tools
 
@@ -51,14 +50,13 @@ your-project/
 │   │   ├── prime.md               # Project context loader
 │   │   └── all_tools.md           # Tool discovery
 │   └── hooks/
-│       ├── user_prompt_submit.py  # Logs user prompts
+│       ├── user_prompt_submit.py  # Security hooks for prompts
 │       ├── pre_tool_use.py        # Security gate for dangerous commands
-│       ├── post_tool_use.py       # Tool execution logging
+│       ├── post_tool_use.py       # Post-tool processing hook
 │       ├── notification.py        # Voice notifications with ElevenLabs TTS
 │       ├── stop.py                # Completion messages with ElevenLabs TTS
 │       └── utils/tts/elevenlabs_tts.py  # ElevenLabs voice synthesis
 ├── .mcp.json                      # MCP server configurations
-├── claude-toolkit-logs/           # Hook execution logs
 ├── README.md                      # This file
 └── .env                          # Your environment variables (not in git)
 ```
@@ -70,7 +68,7 @@ your-project/
 - **Create new agents**: Ask the meta-agent to create specialized sub-agents
 - **Research tasks**: Automatically delegated to research-agent
 
-All hooks provide intelligent logging, security protection, and voice feedback automatically.
+All hooks provide security protection and voice feedback automatically.
 
 ## 🔗 MCP Servers
 
@@ -108,3 +106,7 @@ If you prefer manual installation or want to understand the components:
 - **Non-destructive** - Only adds missing entries to `.gitignore`
 - **No sudo required** - Safe installation without elevated permissions
 - **Advisory dependency checks** - Guides you to install missing tools
+
+## 📚 Credits
+
+Base agent configurations adapted from [Contains Studio](https://github.com/contains-studio).
