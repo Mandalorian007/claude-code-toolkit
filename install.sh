@@ -27,7 +27,6 @@ REQUIRED_ENV_VARS=(
 # Essential .gitignore entries
 GITIGNORE_ENTRIES=(
     ".env"
-    "claude-toolkit-logs/"
 )
 
 # Colors and symbols for output

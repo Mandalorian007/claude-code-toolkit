@@ -13,28 +13,10 @@ def main():
         # Read JSON input from stdin
         input_data = json.load(sys.stdin)
         
-        # Ensure log directory exists
-        log_dir = Path.cwd() / 'claude-toolkit-logs'
-        log_dir.mkdir(exist_ok=True)
-        log_file = log_dir / 'post_tool_use.json'
+        # Hook placeholder - add any post-tool-use processing here
+        # Example: analyze tool results, trigger notifications, etc.
         
-        # Read existing log data or initialize empty list
-        if log_file.exists():
-            with open(log_file, 'r') as f:
-                try:
-                    log_data = json.load(f)
-                except (json.JSONDecodeError, ValueError):
-                    log_data = []
-        else:
-            log_data = []
-        
-        # Append new data
-        log_data.append(input_data)
-        
-        # Write back to file with formatting
-        with open(log_file, 'w') as f:
-            json.dump(log_data, f, indent=2)
-        
+        # For now, just pass through without logging
         sys.exit(0)
         
     except json.JSONDecodeError:

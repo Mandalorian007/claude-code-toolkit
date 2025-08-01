@@ -67,61 +67,15 @@ def main():
     try:
         # Parse command line arguments
         parser = argparse.ArgumentParser()
-        parser.add_argument('--chat', action='store_true', help='Convert transcript to chat format')
+        parser.add_argument('--chat', action='store_true', help='Enable completion notifications')
         args = parser.parse_args()
         
         # Read JSON input from stdin
         input_data = json.loads(sys.stdin.read())
         
-        # Ensure log directory exists
-        log_dir = os.path.join(os.getcwd(), 'claude-toolkit-logs')
-        os.makedirs(log_dir, exist_ok=True)
-        log_file = os.path.join(log_dir, 'stop.json')
-        
-        # Read existing log data or initialize empty list
-        if os.path.exists(log_file):
-            with open(log_file, 'r') as f:
-                try:
-                    log_data = json.load(f)
-                except (json.JSONDecodeError, ValueError):
-                    log_data = []
-        else:
-            log_data = []
-        
-        # Add timestamp to input data
-        input_data['timestamp'] = datetime.now().isoformat()
-        
-        # Append new data
-        log_data.append(input_data)
-        
-        # Write back to file with formatting
-        with open(log_file, 'w') as f:
-            json.dump(log_data, f, indent=2)
-        
-        # Convert transcript to chat format if --chat flag is provided
+        # Announce completion via TTS if --chat flag is provided
         if args.chat:
-            try:
-                transcript_path = os.path.join(os.getcwd(), 'transcript.jsonl')
-                if os.path.exists(transcript_path):
-                    chat_data = []
-                    with open(transcript_path, 'r') as f:
-                        for line in f:
-                            line = line.strip()
-                            if line:
-                                try:
-                                    chat_data.append(json.loads(line))
-                                except json.JSONDecodeError:
-                                    pass  # Skip invalid lines
-                    
-                    # Write to claude-toolkit-logs/chat.json
-                    chat_file = os.path.join(log_dir, 'chat.json')
-                    with open(chat_file, 'w') as f:
-                        json.dump(chat_data, f, indent=2)
-            except Exception:
-                pass  # Fail silently
-        
-        # Announce completion via TTS
-        announce_completion()
+            announce_completion()
         
         sys.exit(0)
         
